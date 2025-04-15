@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
 # Importaciones locales
-from app import db
+from .extensions import db
 
 
 # -------------------------------------------------------------------

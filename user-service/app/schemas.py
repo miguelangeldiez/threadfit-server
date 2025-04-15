@@ -7,7 +7,7 @@ from marshmallow import fields
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 
 # Importaciones locales
-from models import User, Post, Comment, Like
+from .models import User, Post, Comment, Like
 
 # -------------------------------------------------------------------
 # ESQUEMAS DE SERIALIZACIÓN CON MARSHMALLOW
