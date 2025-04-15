@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: interaction-service-deployment
+  labels:
+    app: interaction-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interaction-service
+  template:
+    metadata:
+      labels:
+        app: interaction-service
+    spec:
+      containers:
+      - name: interaction-service
+        image: microservicio-interaction:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        envFrom:
+        - configMapRef:
+            name: interaction-config
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
