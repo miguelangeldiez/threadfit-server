@@ -1,7 +1,11 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 from .config import Config
-from .models import db
 from .routes import auth_bp
+from flask_cors import CORS
+from flask_jwt_extended import JWTManager
+
+db = SQLAlchemy()  # Declarado aquí
 
 def create_app():
     app = Flask(__name__)
@@ -9,8 +13,14 @@ def create_app():
 
     db.init_app(app)
 
+    # Importar modelos dentro del contexto para evitar problemas
+    from . import models  
+
     with app.app_context():
         db.create_all()
+
+    CORS(app)
+    JWTManager(app)
 
     app.register_blueprint(auth_bp, url_prefix="/auth")
 
