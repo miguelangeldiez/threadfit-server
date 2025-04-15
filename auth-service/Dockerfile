@@ -1,10 +1,17 @@
-FROM python:3.13-alpine
+FROM python:3.13-slim
 
 WORKDIR /app
+
+# Instala dependencias del sistema para compilar psycopg2-binary
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "app/main.py"]
+CMD ["python", "-m", "app.main"]
+
