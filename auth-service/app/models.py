@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
-from . import db
+from .extensions import db
 
 class User(db.Model):
     __tablename__ = 'users'
