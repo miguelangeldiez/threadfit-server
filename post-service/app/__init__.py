@@ -9,6 +9,7 @@ def create_app():
     app.config.from_object(Config)
 
     # Inicializar extensiones
+    print("Database URI:", app.config['SQLALCHEMY_DATABASE_URI'])
     db.init_app(app)
     jwt.init_app(app)
     limiter.init_app(app)
@@ -19,5 +20,6 @@ def create_app():
 
     # Registrar Blueprints
     app.register_blueprint(posts)
+    
 
     return app
